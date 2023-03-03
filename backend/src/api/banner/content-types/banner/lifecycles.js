@@ -1,14 +1,14 @@
 module.exports = {
     async afterFindMany(event) {
-        const { result } = event
+        const { result, params } = event
+        console.log(params);
 
-        result.forEach(async function(item, i) {
-            const entry = await strapi.entityService.update('api::banner.banner', this[i].id, {
-                data: {
-                    qtd_views: this[i].qtd_views + 1
-                }
-            })
-            console.log(entry.qtd_views);
-        }, result)
+        const promises = result.map(async (item, i, array) => await strapi.entityService.update('api::banner.banner', array[i].id, {
+            data: {
+                qtd_views: array[i].qtd_views + 1
+            }
+        }))
+            
+        await Promise.all(promises)
     }
 }
