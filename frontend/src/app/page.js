@@ -6,12 +6,12 @@ const inter = Inter({ subsets: ["latin"] })
 
 
 export default async function Home() {
-  let data = await fetchAPI('/banners', {
+  const data = await fetchAPI('/banners', {
     populate: '*'
   }, {
     cache: 'no-store'
   })
-  let banners = data.data
+  const banners = data.data
 
 
   return (
@@ -19,8 +19,8 @@ export default async function Home() {
       <h1>Home</h1>
 
       {banners.map((banner) => {
-        let { attributes } = banner
-        let imagem = attributes.imagem.data
+        const { attributes } = banner
+        const imagem = attributes.imagem.data
 
         return (
           <div key={attributes.createdAt}>

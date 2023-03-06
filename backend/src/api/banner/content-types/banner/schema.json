@@ -34,6 +34,10 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "qtd_views": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

@@ -29,7 +29,9 @@ export async function fetchAPI(path, urlParamsObject = {}, options = {}) {
 
   // Build request URL
   const queryString = qs.stringify(urlParamsObject);
-  const requestUrl = `${getStrapiURL( `/api${path}${queryString ? `?${queryString}` : ""}`)}`;
+  const requestUrl = `${getStrapiURL(
+    `/api${path}${queryString ? `?${queryString}` : ""}`
+  )}`;
 
   // Trigger API call
   const response = await fetch(requestUrl, mergedOptions);
@@ -37,7 +39,7 @@ export async function fetchAPI(path, urlParamsObject = {}, options = {}) {
   // Handle response
   if (!response.ok) {
     console.error(response.statusText);
-    throw new Error(`Something went wrong!`);
+    throw Error("Something went wrong...");
   }
   const data = await response.json();
   return data;
