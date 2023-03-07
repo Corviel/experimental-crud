@@ -20,17 +20,16 @@ export default async function Home() {
 
       {banners.map((banner) => {
         const { attributes } = banner
-        const imagem = attributes.imagem.data
+        const image = attributes.image.data
 
         return (
           <div key={attributes.createdAt}>
-            <p>{attributes.titulo}</p>
+            <p>{attributes.title}</p>
             <a href={attributes.url}>{attributes.url}</a>
-            <img className="max-w-[400px]" src={`http://127.0.0.1:1337${imagem.attributes.url}`} alt="" />
+            {image ? <img src={`http://127.0.0.1:1337${image.attributes.url}`} alt="" /> : <p>No image</p> }
           </div>
         )
       })}
-
     </main>
   )
 }
